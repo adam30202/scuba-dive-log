@@ -8,6 +8,8 @@ const New_Dive = (props) => {
 
     const navigate = useNavigate()
 
+  
+
 //////// Gets Current User/Session
 
     const [user, setUser] = useState({});
