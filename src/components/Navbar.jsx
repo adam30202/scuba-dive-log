@@ -19,43 +19,24 @@ const Navbar = ({ session }) => {
   // This component returns a navigation bar with links to various pages
   return (
     <nav className="nav">
-      {/* This inserts the logo and sets it as a link to the home page */}
-      <a href="/">
-        <img src={logo1} alt="logo" id="logo" />
-      </a>
+      <h1>Dive Track</h1>
       <ul>
-        {session ? (
-          <div>
-            <li>
-              <Link to="/log-dive">Log Dive</Link>
-            </li>
-            <li>
-              <Link to="/Dives">View Dives</Link>
-            </li>
-            <li>
-                <Link to="/account">Profile</Link>
-            </li>
-            <li>
-                <Link to="/account" onClick={() => supabase.auth.signOut()}>Logout</Link>
-            </li>
-            <li>
-              <SearchBar onSubmit={ _handleSearch }/>
-            </li>
-          </div>
-        ) : (
-          <div>
-            <li>
-              <Link to="/account" >Login</Link>
-            </li>
-            <li>
-              <Link to="/register" >Register</Link>
-            </li>
-            <li>
-              <SearchBar onSubmit={ _handleSearch }/>
-            </li>
-          </div>
-        )}
-        
+        {/* The first list item links to the homepage */}
+        <li>
+          <Link to="/">🏠</Link>
+        </li>
+        {/* The second list item links to a page to log a new dive */}
+        <li>
+          <Link to="/log-dive">Log Dive</Link>
+        </li>
+        {/* The third list item links to a page to view all dives */}
+        <li>
+          <Link to="/Dives">View Dives</Link>
+        </li>
+      {/* The fourth list item contains a link to the search page */}
+        <li>
+          <SearchBar onSubmit={ _handleSearch }/>
+        </li>
       </ul>
     </nav>
   );

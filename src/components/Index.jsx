@@ -1,9 +1,9 @@
 import Table from 'react-bootstrap/Table';
 import { Link } from "react-router-dom";
-import { supabase } from '../config/supabaseClient';
-import { useState, useEffect } from 'react';
 
 const Index = (props) => {
+
+    const navigate = useNavigate()
 
     const [ userDives, setUserDives ] = useState([])
 
@@ -21,8 +21,13 @@ const Index = (props) => {
 
     console.log(userDives)
 
+
+    const _handleRowClick = (diveId) => {
+        navigate(`/Dives/${diveId}`);
+    }
+
     return (
-        <Table striped bordered hover>
+        <table>
         <thead>
           <tr>
             <th>Dive No.</th>
@@ -33,16 +38,17 @@ const Index = (props) => {
           </tr>
         </thead>
         <tbody>
-            { userDives ? (
-                userDives.map((dive) => (
+            { props.userDives ? (
+                props.userDives.map((dive) => (
                 
                     <tr key={dive.id}> 
-                        <td><Link to={ `/dives/${dive.id}` }>{ dive.dive_number }</Link></td>
+                        <td><Link to={ `/Dives/${dive.id}` }>{ dive.dive_number }</Link></td>
                         <td>{ dive.date }</td>
                         <td>{ dive.dive_site }</td>
                         <td>{ dive.max_depth } m</td>
-                        <td>{ dive.bottom_time } minutes</td>   
+                        <td>{ dive.bottom_time } mins</td>   
                     </tr>
+                  
                 ))
             ) : ( 
                 <tr>
@@ -50,7 +56,7 @@ const Index = (props) => {
                 </tr>
             )}
         </tbody>
-      </Table>
+      </table>
   
     );
 };
