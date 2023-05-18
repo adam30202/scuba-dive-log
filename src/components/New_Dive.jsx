@@ -8,6 +8,7 @@ const New_Dive = (props) => {
 
     const navigate = useNavigate()
 
+<<<<<<< HEAD
   
 
 //////// Gets Current User/Session
@@ -25,7 +26,51 @@ const New_Dive = (props) => {
             })
         }
         getUserData();
+=======
+    const [ userDives, setUserDives ] = useState([])
+
+    async function getUserDives() {
+        const { data } = await supabase
+            .from('Dive_Log')
+            .select()
+            .eq('user_id', props.session.user.id)
+        setUserDives(data)
+    }
+
+    useEffect(() => { 
+        getUserDives()
+>>>>>>> d4244f5 (add new auth system)
     }, []);
+
+    async function addDive(diveLogObject) {
+        const { data, error } = await supabase
+            .from('Dive_Log')
+            .insert({
+                dive_number: diveLogObject.diveNum,
+                date: diveLogObject.date,
+                dive_site: diveLogObject.diveSite,
+                max_depth: diveLogObject.maxDepth,
+                bottom_time: diveLogObject.bottomTime,
+                dive_type: diveLogObject.diveType,
+                weather: diveLogObject.weather,
+                water_conditions: diveLogObject.waterConditions,
+                water_temperature: diveLogObject.waterTemperature,
+                body_of_water: diveLogObject.bodyOfWater,
+                equipment: diveLogObject.equipment,
+                dive_buddy: diveLogObject.buddy,
+                dive_company: diveLogObject.diveCompany,
+                overall_feeling: diveLogObject.overallFeeling,
+                user_id: diveLogObject.user_id
+            })
+      
+            if (error) {
+              console.log(error)
+            }
+      
+            getUserDives()
+      
+      }
+      
 
 /////// useStates for Log Dive form
 
@@ -63,16 +108,14 @@ const New_Dive = (props) => {
             buddy: buddy,
             overallFeeling: overallFeeling,
             diveCompany: diveCompany,
-            user_id: user.id,
+            user_id: props.session.user.id,
         }
 
         ////////////// Passes object to App.jsx
 
         console.log(diveLogObject)
-        props.onSubmit(diveLogObject)
+        props.session.user.onSubmit(diveLogObject)
 
-        
-        
         //////////////////////// Resets Form
 
         setDiveNum(null);
