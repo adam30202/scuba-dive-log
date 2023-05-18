@@ -8,25 +8,6 @@ const New_Dive = (props) => {
 
     const navigate = useNavigate()
 
-<<<<<<< HEAD
-  
-
-//////// Gets Current User/Session
-
-    const [user, setUser] = useState({});
-
-    useEffect(() => {
-        async function getUserData() {
-            await supabase.auth.getUser().then((value) => {
-                // value.data.user
-                if (value.data?.user) {
-                    console.log(value.data.user);
-                    setUser(value.data.user);
-                }
-            })
-        }
-        getUserData();
-=======
     const [ userDives, setUserDives ] = useState([])
 
     async function getUserDives() {
@@ -39,7 +20,6 @@ const New_Dive = (props) => {
 
     useEffect(() => { 
         getUserDives()
->>>>>>> d4244f5 (add new auth system)
     }, []);
 
     async function addDive(diveLogObject) {
