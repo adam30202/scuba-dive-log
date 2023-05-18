@@ -1,5 +1,6 @@
 import Table from 'react-bootstrap/Table';
 import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Index = (props) => {
 
@@ -27,7 +28,7 @@ const Index = (props) => {
     }
 
     return (
-        <table>
+        <Table striped bordered hover>
         <thead>
           <tr>
             <th>Dive No.</th>
@@ -43,12 +44,14 @@ const Index = (props) => {
                 
                     <tr key={dive.id}> 
                         <td><Link to={ `/Dives/${dive.id}` }>{ dive.dive_number }</Link></td>
+                
+                    <tr key={dive.id}> 
+                        <td><Link to={ `/Dives/${dive.id}` }>{ dive.dive_number }</Link></td>
                         <td>{ dive.date }</td>
                         <td>{ dive.dive_site }</td>
                         <td>{ dive.max_depth } m</td>
-                        <td>{ dive.bottom_time } mins</td>   
+                        <td>{ dive.bottom_time } minutes</td>   
                     </tr>
-                  
                 ))
             ) : ( 
                 <tr>
@@ -56,7 +59,7 @@ const Index = (props) => {
                 </tr>
             )}
         </tbody>
-      </table>
+      </Table>
   
     );
 };

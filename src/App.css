@@ -9,25 +9,18 @@
   text-align: center;
 }
 
-@media (max-width: 500px) {
-  #logo  {
-    font-size: 34px;
-  }
-}
-
-
 /* DIVE LOG FORM */
 
 .divelog-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #0d0d8b70;
+  background-color: #4000ffa3;
   padding: 1em;
-  border: 2px solid #0d0d8b70;
+  border: 2px solid #382481;
   border-radius: 1em;
   color: white;
-  margin-top: 5em;
+  margin-top: 3em;
 }
 
 form {
@@ -52,6 +45,18 @@ form {
 
 .input {
   width: 100%;
+}
+
+
+.submit-button {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  left: 101px;
+}
+
+.delete-button {
+  margin-top: 15px;
 }
 
 /* ^ DIVE LOG FORM ^ */ 
@@ -86,7 +91,8 @@ body {
   justify-content: space-between;
     /* Aligns items along the cross axis to stretch them vertically */
   align-items: stretch;
- 
+    /* Sets the gap between flex items to 2rem */
+  gap: 2rem;
     /* Adds padding to the left and right of the navigation bar */
   padding: 0 1rem;
 }
